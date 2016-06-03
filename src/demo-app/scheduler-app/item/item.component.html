@@ -1,0 +1,16 @@
+
+<style>
+.isselected{
+background-color:lightblue;
+}
+.dragged-over{
+background-color: white;
+}
+.cursorcopy{
+cursor:copy;
+}
+</style>
+<li style="border: 1px solid black"  class="noselect" csSelected  [ngClass]="{isselected: selected}" (dropspotvalid)="ondropspotvalid($event)"
+    (selectiontoggle)="onselectiontoggle($event)"  id="{{uid}}_{{index}}" csDragger >
+    {{viewText}}
+</li>

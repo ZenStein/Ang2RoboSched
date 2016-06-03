@@ -1,0 +1,1374 @@
+
+.demo-grid-list {
+  width: 1100px;
+
+  md-card {
+    margin: 16px 0;
+  }
+
+  p {
+    margin: 16px;
+  }
+
+  .demo-basic-list md-grid-tile {
+    background: rgba(0,0,0,0.32);
+  }
+
+  img {
+    width: 350px;
+  }
+}
+
+
+
+
+//
+///*cs-tag variables start*/
+//
+/////////////////////////////////////
+//////@import 'theme-functions';////
+///////////////////////////////////
+//
+//
+//// Typography
+//$md-body-font-size-base: rem(1.400) !default;
+//$md-font-family: Roboto, 'Helvetica Neue', sans-serif !default;
+//
+//// Media queries
+//$md-xsmall: "max-width: 600px";
+//
+//// z-index master list
+//$z-index-fab: 20 !default;
+//$z-index-drawer: 100 !default;
+//
+//// Global constants
+//$pi: 3.14159265;
+//
+//// Padding between input toggles and their labels
+//$md-toggle-padding: 8px !default;
+//// Width and height of input toggles
+//$md-toggle-size: 20px !default;
+//
+//// Easing Curves
+//// TODO(jelbourn): all of these need to be revisited
+//
+//// The default animation curves used by material design.
+//$md-linear-out-slow-in-timing-function: cubic-bezier(0.0, 0.0, 0.2, 0.1) !default;
+//$md-fast-out-slow-in-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1) !default;
+//$md-fast-out-linear-in-timing-function: cubic-bezier(0.4, 0.0, 1, 1) !default;
+//
+//$ease-in-out-curve-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
+//
+//$swift-ease-out-duration: 0.4s !default;
+//$swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+//$swift-ease-out: all $swift-ease-out-duration $swift-ease-out-timing-function !default;
+//
+//$swift-ease-in-duration: 0.3s !default;
+//$swift-ease-in-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2) !default;
+//$swift-ease-in: all $swift-ease-in-duration $swift-ease-in-timing-function !default;
+//
+//$swift-ease-in-out-duration: 0.5s !default;
+//$swift-ease-in-out-timing-function: $ease-in-out-curve-function !default;
+//$swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;
+//
+//$swift-linear-duration: 0.08s !default;
+//$swift-linear-timing-function: linear !default;
+//$swift-linear: all $swift-linear-duration $swift-linear-timing-function !default;
+//
+//
+///*cs-tag variables end*/
+//// Color palettes from the Material Design spec.
+//// See https://www.google.com/design/spec/style/color.html
+///*cs-tag file start*/
+//
+//  /////////////////////////////////
+// ////@import 'theme-functions';///
+///////////////////////////////////
+///*cs-tag theme-functions start*/
+//
+//// ** Two main functions for users **
+//// md-palette: used for defining your theme in terms of Material hues.
+//// md-color: apply colors to components from the palette. Consumes the output of md-palette
+//
+//// Implement the rem unit with SCSS so we don't have to actually set a font-size on
+//// the user's body element.
+//@function rem($multiplier) {
+//  $font-size: 10px;
+//  @return $multiplier * $font-size;
+//}
+//
+//// For a given hue in a palette, return the contrast color from the map of contrast palettes.
+//@function md-contrast($color-map, $hue, $contrast-color-map) {
+//  @return map-get(map-get($contrast-color-map, $color-map), $hue);
+//}
+//
+//
+//// Creates a map of hues to colors for a theme.
+//// $color-map
+//// $primary
+//// $lighter
+//// $darker
+//@function md-palette($color-map, $primary, $lighter, $darker, $contrast-color-map) {
+//  $result: map_merge($color-map, (
+//    default: map-get($color-map, $primary),
+//    lighter: map-get($color-map, $lighter),
+//    darker: map-get($color-map, $darker),
+//
+//    default-contrast: md-contrast($color-map, $primary, $contrast-color-map),
+//    lighter-contrast: md-contrast($color-map, $lighter, $contrast-color-map),
+//    darker-contrast: md-contrast($color-map, $darker, $contrast-color-map)
+//  ));
+//
+//  // For each hue in the palette, add a "-contrast" color to the map.
+//  @each $hue, $color in $color-map {
+//    $result: map_merge($result, (
+//      "#{$hue}-contrast": md-contrast($color-map, $hue, $contrast-color-map)
+//    ))
+//  }
+//
+//  @return $result;
+//}
+//
+//// Gets a color for a material design component.
+//// $color-map: a map of {key: color}.
+//// $hue-key: key used to lookup the color in $colorMap. Defaults to 'default'
+////     If $hue-key is a number between 0 and 1, it will be treated as $opacity.
+//// $opacity: the opacity to apply to the color.
+//@function md-color($color-map, $hue-key: default, $opacity: 1) {
+//  // If hueKey is a number between zero and one, then it actually contains an
+//  // opacity value, so recall this function with the default hue and that given opacity.
+//  @if type-of($hue-key) == number and $hue-key >= 0 and $hue-key <= 1 {
+//    @return md-color($color-map, default, $hue-key)
+//  }
+//
+//  $color: map-get($color-map, $hue-key);
+//  $opacity: if(opacity($color) < 1, opacity($color), $opacity);
+//
+//  @return rgba($color, $opacity);
+//}
+//
+//
+///*cs-tag theme-functions end*/
+//  ///////////////////////////
+// ////@import 'palette';////
+////////////////////////////
+//
+///*cs-tag color start*/
+//$md-red: (
+//  50: #ffebee,
+//  100: #ffcdd2,
+//  200: #ef9a9a,
+//  300: #e57373,
+//  400: #ef5350,
+//  500: #f44336,
+//  600: #e53935,
+//  700: #d32f2f,
+//  800: #c62828,
+//  900: #b71c1c,
+//  A100: #ff8a80,
+//  A200: #ff5252,
+//  A400: #ff1744,
+//  A700: #d50000,
+//);
+//
+//$md-pink: (
+//  50: #fce4ec,
+//  100: #f8bbd0,
+//  200: #f48fb1,
+//  300: #f06292,
+//  400: #ec407a,
+//  500: #e91e63,
+//  600: #d81b60,
+//  700: #c2185b,
+//  800: #ad1457,
+//  900: #880e4f,
+//  A100: #ff80ab,
+//  A200: #ff4081,
+//  A400: #f50057,
+//  A700: #c51162,
+//);
+//
+//$md-purple: (
+//  50: #f3e5f5,
+//  100: #e1bee7,
+//  200: #ce93d8,
+//  300: #ba68c8,
+//  400: #ab47bc,
+//  500: #9c27b0,
+//  600: #8e24aa,
+//  700: #7b1fa2,
+//  800: #6a1b9a,
+//  900: #4a148c,
+//  A100: #ea80fc,
+//  A200: #e040fb,
+//  A400: #d500f9,
+//  A700: #aa00ff,
+//);
+//
+//$md-deep-purple: (
+//  50: #ede7f6,
+//  100: #d1c4e9,
+//  200: #b39ddb,
+//  300: #9575cd,
+//  400: #7e57c2,
+//  500: #673ab7,
+//  600: #5e35b1,
+//  700: #512da8,
+//  800: #4527a0,
+//  900: #311b92,
+//  A100: #b388ff,
+//  A200: #7c4dff,
+//  A400: #651fff,
+//  A700: #6200ea,
+//);
+//
+//$md-indigo: (
+//  50: #e8eaf6,
+//  100: #c5cae9,
+//  200: #9fa8da,
+//  300: #7986cb,
+//  400: #5c6bc0,
+//  500: #3f51b5,
+//  600: #3949ab,
+//  700: #303f9f,
+//  800: #283593,
+//  900: #1a237e,
+//  A100: #8c9eff,
+//  A200: #536dfe,
+//  A400: #3d5afe,
+//  A700: #304ffe,
+//);
+//
+//$md-blue: (
+//  50: #e3f2fd,
+//  100: #bbdefb,
+//  200: #90caf9,
+//  300: #64b5f6,
+//  400: #42a5f5,
+//  500: #2196f3,
+//  600: #1e88e5,
+//  700: #1976d2,
+//  800: #1565c0,
+//  900: #0d47a1,
+//  A100: #82b1ff,
+//  A200: #448aff,
+//  A400: #2979ff,
+//  A700: #2962ff,
+//);
+//
+//$md-light-blue: (
+//  50: #e1f5fe,
+//  100: #b3e5fc,
+//  200: #81d4fa,
+//  300: #4fc3f7,
+//  400: #29b6f6,
+//  500: #03a9f4,
+//  600: #039be5,
+//  700: #0288d1,
+//  800: #0277bd,
+//  900: #01579b,
+//  A100: #80d8ff,
+//  A200: #40c4ff,
+//  A400: #00b0ff,
+//  A700: #0091ea,
+//);
+//
+//$md-cyan: (
+//  50: #e0f7fa,
+//  100: #b2ebf2,
+//  200: #80deea,
+//  300: #4dd0e1,
+//  400: #26c6da,
+//  500: #00bcd4,
+//  600: #00acc1,
+//  700: #0097a7,
+//  800: #00838f,
+//  900: #006064,
+//  A100: #84ffff,
+//  A200: #18ffff,
+//  A400: #00e5ff,
+//  A700: #00b8d4,
+//);
+//
+//$md-teal: (
+//  50: #e0f2f1,
+//  100: #b2dfdb,
+//  200: #80cbc4,
+//  300: #4db6ac,
+//  400: #26a69a,
+//  500: #009688,
+//  600: #00897b,
+//  700: #00796b,
+//  800: #00695c,
+//  900: #004d40,
+//  A100: #a7ffeb,
+//  A200: #64ffda,
+//  A400: #1de9b6,
+//  A700: #00bfa5,
+//);
+//
+//$md-green: (
+//  50: #e8f5e9,
+//  100: #c8e6c9,
+//  200: #a5d6a7,
+//  300: #81c784,
+//  400: #66bb6a,
+//  500: #4caf50,
+//  600: #43a047,
+//  700: #388e3c,
+//  800: #2e7d32,
+//  900: #1b5e20,
+//  A100: #b9f6ca,
+//  A200: #69f0ae,
+//  A400: #00e676,
+//  A700: #00c853,
+//);
+//
+//$md-light-green: (
+//  50: #f1f8e9,
+//  100: #dcedc8,
+//  200: #c5e1a5,
+//  300: #aed581,
+//  400: #9ccc65,
+//  500: #8bc34a,
+//  600: #7cb342,
+//  700: #689f38,
+//  800: #558b2f,
+//  900: #33691e,
+//  A100: #ccff90,
+//  A200: #b2ff59,
+//  A400: #76ff03,
+//  A700: #64dd17,
+//);
+//
+//$md-lime: (
+//  50: #f9fbe7,
+//  100: #f0f4c3,
+//  200: #e6ee9c,
+//  300: #dce775,
+//  400: #d4e157,
+//  500: #cddc39,
+//  600: #c0ca33,
+//  700: #afb42b,
+//  800: #9e9d24,
+//  900: #827717,
+//  A100: #f4ff81,
+//  A200: #eeff41,
+//  A400: #c6ff00,
+//  A700: #aeea00,
+//);
+//
+//$md-yellow: (
+//  50: #fffde7,
+//  100: #fff9c4,
+//  200: #fff59d,
+//  300: #fff176,
+//  400: #ffee58,
+//  500: #ffeb3b,
+//  600: #fdd835,
+//  700: #fbc02d,
+//  800: #f9a825,
+//  900: #f57f17,
+//  A100: #ffff8d,
+//  A200: #ffff00,
+//  A400: #ffea00,
+//  A700: #ffd600,
+//);
+//
+//$md-amber: (
+//  50: #fff8e1,
+//  100: #ffecb3,
+//  200: #ffe082,
+//  300: #ffd54f,
+//  400: #ffca28,
+//  500: #ffc107,
+//  600: #ffb300,
+//  700: #ffa000,
+//  800: #ff8f00,
+//  900: #ff6f00,
+//  A100: #ffe57f,
+//  A200: #ffd740,
+//  A400: #ffc400,
+//  A700: #ffab00,
+//);
+//
+//$md-orange: (
+//  50: #fff3e0,
+//  100: #ffe0b2,
+//  200: #ffcc80,
+//  300: #ffb74d,
+//  400: #ffa726,
+//  500: #ff9800,
+//  600: #fb8c00,
+//  700: #f57c00,
+//  800: #ef6c00,
+//  900: #e65100,
+//  A100: #ffd180,
+//  A200: #ffab40,
+//  A400: #ff9100,
+//  A700: #ff6d00,
+//);
+//
+//$md-deep-orange: (
+//  50: #fbe9e7,
+//  100: #ffccbc,
+//  200: #ffab91,
+//  300: #ff8a65,
+//  400: #ff7043,
+//  500: #ff5722,
+//  600: #f4511e,
+//  700: #e64a19,
+//  800: #d84315,
+//  900: #bf360c,
+//  A100: #ff9e80,
+//  A200: #ff6e40,
+//  A400: #ff3d00,
+//  A700: #dd2c00,
+//);
+//
+//$md-brown: (
+//  50: #efebe9,
+//  100: #d7ccc8,
+//  200: #bcaaa4,
+//  300: #a1887f,
+//  400: #8d6e63,
+//  500: #795548,
+//  600: #6d4c41,
+//  700: #5d4037,
+//  800: #4e342e,
+//  900: #3e2723,
+//  A100: #d7ccc8,
+//  A200: #bcaaa4,
+//  A400: #8d6e63,
+//  A700: #5d4037,
+//);
+//
+//$md-grey: (
+//  0: #ffffff,
+//  50: #fafafa,
+//  100: #f5f5f5,
+//  200: #eeeeee,
+//  300: #e0e0e0,
+//  400: #bdbdbd,
+//  500: #9e9e9e,
+//  600: #757575,
+//  700: #616161,
+//  800: #424242,
+//  900: #212121,
+//  1000: #000000,
+//  A100: #ffffff,
+//  A200: #eeeeee,
+//  A400: #bdbdbd,
+//  A700: #616161,
+//);
+//
+//$md-blue-grey: (
+//  50: #eceff1,
+//  100: #cfd8dc,
+//  200: #b0bec5,
+//  300: #90a4ae,
+//  400: #78909c,
+//  500: #607d8b,
+//  600: #546e7a,
+//  700: #455a64,
+//  800: #37474f,
+//  900: #263238,
+//  A100: #cfd8dc,
+//  A200: #b0bec5,
+//  A400: #78909c,
+//  A700: #455a64,
+//);
+//
+//
+//// Background palette for light themes.
+//$md-light-theme-background: (
+//  status-bar: map_get($md-grey, 300),
+//  app-bar:    map_get($md-grey, 100),
+//  background: map_get($md-grey, 50),
+//  hover:             rgba(black, 0.04), // TODO(kara): check style with Material Design UX
+//  card:       white,
+//  dialog:     white,
+//  disabled-button:   rgba(black, 0.12)
+//);
+//
+//// Background palette for dark themes.
+//$md-dark-theme-background: (
+//  status-bar: black,
+//  app-bar:    map_get($md-grey, 900),
+//  background: #303030,
+//  hover:             rgba(white, 0.04), // TODO(kara): check style with Material Design UX
+//  card:       map_get($md-grey, 800),
+//  dialog:     map_get($md-grey, 800),
+//  disabled-button:   rgba(white, 0.12)
+//);
+//
+//// Foreground palette for light themes.
+//$md-light-theme-foreground: (
+//  base:            black,
+//  divider:         rgba(black, 0.12),
+//  dividers:        rgba(black, 0.12),
+//  disabled:        rgba(black, 0.38),
+//  disabled-button: rgba(black, 0.38),
+//  disabled-text:   rgba(black, 0.38),
+//  hint-text:       rgba(black, 0.38),
+//  secondary-text:  rgba(black, 0.54),
+//  icon:            rgba(black, 0.54),
+//  icons:           rgba(black, 0.54),
+//  text:            rgba(black, 0.87)
+//);
+//
+//// Foreground palette for dark themes.
+//$md-dark-theme-foreground: (
+//  base:            white,
+//  divider:         rgba(white, 0.12),
+//  dividers:        rgba(white, 0.12),
+//  disabled:        rgba(white, 0.30),
+//  disabled-button: rgba(white,0.30),
+//  disabled-text:   rgba(white, 0.30),
+//  hint-text:       rgba(white, 0.30),
+//  secondary-text:  rgba(white, 0.70),
+//  icon:            white,
+//  icons:           white,
+//  text:            white
+//);
+//
+//
+//
+//// TODO(jelbourn): Do we actually need these any more? Updates to the spec about how foreground
+//// colors are used may have made this obsolete.
+//
+//// Contrast colors. These are hard-coded because it is too difficult (probably impossible) to
+//// calculate them. These contrast colors are pulled from the public Material Design spec swatches.
+//// While the contrast colors in the spec are not perscriptive, we will use them for convenience.
+//$black-87-opacity: rgba(black, 0.870588);
+//$white-87-opacity: rgba(white, 0.870588);
+//
+//$md-contrast-palettes: (
+//  $md-red: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: white,
+//    A400: white,
+//    A700: white,
+//  ),
+//  $md-pink: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: white,
+//    A400: white,
+//    A700: white,
+//  ),
+//  $md-purple: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: white,
+//    400: white,
+//    500: $white-87-opacity,
+//    600: $white-87-opacity,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: white,
+//    A400: white,
+//    A700: white,
+//  ),
+//  $md-deep-purple: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: white,
+//    400: white,
+//    500: $white-87-opacity,
+//    600: $white-87-opacity,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: white,
+//    A400: $white-87-opacity,
+//    A700: $white-87-opacity,
+//  ),
+//  $md-indigo: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: white,
+//    400: white,
+//    500: $white-87-opacity,
+//    600: $white-87-opacity,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: white,
+//    A400: white,
+//    A700: $white-87-opacity,
+//  ),
+//  $md-blue: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: white,
+//    A400: white,
+//    A700: white,
+//  ),
+//  $md-light-blue: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: white,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: white,
+//  ),
+//  $md-cyan: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: white,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-teal: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-green: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-light-green: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: $black-87-opacity,
+//    600: $black-87-opacity,
+//    700: $black-87-opacity,
+//    800: white,
+//    900: white,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-lime: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: $black-87-opacity,
+//    600: $black-87-opacity,
+//    700: $black-87-opacity,
+//    800: $black-87-opacity,
+//    900: white,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-yellow: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: $black-87-opacity,
+//    600: $black-87-opacity,
+//    700: $black-87-opacity,
+//    800: $black-87-opacity,
+//    900: $black-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-amber: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: $black-87-opacity,
+//    600: $black-87-opacity,
+//    700: $black-87-opacity,
+//    800: $black-87-opacity,
+//    900: $black-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $black-87-opacity,
+//  ),
+//  $md-orange: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: $black-87-opacity,
+//    600: $black-87-opacity,
+//    700: $black-87-opacity,
+//    800: white,
+//    900: white,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: black,
+//  ),
+//  $md-deep-orange: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: white,
+//    600: white,
+//    700: white,
+//    800: white,
+//    900: white,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: white,
+//    A700: white,
+//  ),
+//  $md-brown: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: white,
+//    400: white,
+//    500: $white-87-opacity,
+//    600: $white-87-opacity,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: white,
+//    A700: $white-87-opacity,
+//  ),
+//  $md-grey: (
+//    0: $black-87-opacity,
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: $black-87-opacity,
+//    500: $black-87-opacity,
+//    600: $white-87-opacity,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    1000: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: $black-87-opacity,
+//    A700: $white-87-opacity,
+//  ),
+//  $md-blue-grey: (
+//    50: $black-87-opacity,
+//    100: $black-87-opacity,
+//    200: $black-87-opacity,
+//    300: $black-87-opacity,
+//    400: white,
+//    500: white,
+//    600: $white-87-opacity,
+//    700: $white-87-opacity,
+//    800: $white-87-opacity,
+//    900: $white-87-opacity,
+//    A100: $black-87-opacity,
+//    A200: $black-87-opacity,
+//    A400: white,
+//    A700: $white-87-opacity,
+//  ),
+//);
+//
+///*cs-tag colors end*/
+//
+//
+///*cs-tag theme start*/
+//
+//// Person creating a theme writes variables like this:
+//$md-is-dark-theme: false;
+//
+//
+//$md-primary: md-palette($md-teal, 500, 100, 700, $md-contrast-palettes);
+//$md-accent: md-palette($md-purple, 500, 300,800, $md-contrast-palettes);
+//$md-warn: md-palette($md-red, 500, 300, 900, $md-contrast-palettes);
+//$md-foreground: if($md-is-dark-theme, $md-dark-theme-foreground, $md-light-theme-foreground);
+//$md-background: if($md-is-dark-theme, $md-dark-theme-background, $md-light-theme-background);
+///*cs-tag theme  end /
+//
+//
+//
+///*cs-tag mixin start*/
+//      /* colors is 700 lines long, starts at 0*/
+//
+//
+///**
+// * Mixin that creates a new stacking context.
+// * see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+// */
+//@mixin md-stacking-context() {
+//  position: relative;
+//
+//  // Use a transform to create a new stacking context.
+//  transform: translate3D(0, 0, 0);
+//}
+//
+///**
+// * This mixin hides an element visually.
+// * That means it's still accessible for screen-readers but not visible in view.
+// */
+//@mixin md-visually-hidden {
+//  border: 0;
+//  clip: rect(0 0 0 0);
+//  height: 1px;
+//  margin: -1px;
+//  overflow: hidden;
+//  padding: 0;
+//  position: absolute;
+//  text-transform: none;
+//  width: 1px;
+//}
+//
+///**
+// * Forces an element to grow to fit floated contents; used as as an alternative to
+// * `overflow: hidden;` because it doesn't cut off contents.
+// */
+//@mixin md-clearfix {
+//  &:before, &:after {
+//    content: '';
+//    clear: both;
+//    display: table;
+//  }
+//}
+//
+///**
+// * A mixin, which generates temporary ink ripple on a given component.
+// * When $bindToParent is set to true, it will check for the focused class on the same selector as you included
+// * that mixin.
+// * It is also possible to specify the color palette of the temporary ripple. By default it uses the
+// * accent palette for its background.
+// */
+//@mixin md-temporary-ink-ripple($component, $bindToParent: false, $palette: $md-accent) {
+//  // TODO(mtlin): Replace when ink ripple component is implemented.
+//  // A placeholder ink ripple, shown when keyboard focused.
+//  .md-ink-ripple {
+//    border-radius: 50%;
+//    opacity: 0;
+//    height: 48px;
+//    left: 50%;
+//    overflow: hidden;
+//    pointer-events: none;
+//    position: absolute;
+//    top: 50%;
+//    transform: translate(-50%,-50%);
+//    transition: opacity ease 0.28s, background-color ease 0.28s;
+//    width: 48px;
+//  }
+//
+//  // Fade in when radio focused.
+//  #{if($bindToParent, '&', '')}.md-#{$component}-focused .md-ink-ripple {
+//    opacity: 1;
+//    background-color: md-color($palette, 0.26);
+//  }
+//
+//  // TODO(mtlin): This corresponds to disabled focus state, but it's unclear how to enter into
+//  // this state.
+//  #{if($bindToParent, '&', '')}.md-#{$component}-disabled .md-ink-ripple {
+//    background-color: #000;
+//  }
+//}
+//
+///*cs-tag mixin end*/
+///*cs-tag core start*/
+//
+//// Core styles that can be used to apply material design treatments to any element.
+//
+//////////////////////////////
+/////*@import 'elevation';*///
+//////////////////////////////
+//
+///*cs-tag elevation start*/
+//
+//
+///**
+// * A collection of mixins and CSS classes that can be used to apply elevation to a material
+// * element.
+// * See: https://www.google.com/design/spec/what-is-material/elevation-shadows.html
+// * Examples:
+// *
+// *
+// * .md-foo {
+// *   @include $md-elevation(2);
+// *
+// *   &:active {
+// *     @include $md-elevation(8);
+// *   }
+// * }
+// *
+// * <div id="external-card" class="md-elevation-z2"><p>Some content</p></div>
+// *
+// * For an explanation of the design behind how elevation is implemented, see the design doc at
+// * https://goo.gl/Kq0k9Z.
+// */
+//
+//// Colors for umbra, penumbra, and ambient shadows. As described in the design doc, each elevation
+//// level is created using a set of 3 shadow values, one for umbra (the shadow representing the
+//// space completely obscured by an object relative to its light source), one for penumbra (the
+//// space partially obscured by an object), and one for ambient (the space which contains the object
+//// itself). For a further explanation of these terms and their meanings, see
+//// https://en.wikipedia.org/wiki/Umbra,_penumbra_and_antumbra.
+//
+//$_umbra-color: rgba(black, 0.2);
+//$_penumbra-color: rgba(black, 0.14);
+//$_ambient-color: rgba(black, 0.12);
+//
+//// Maps for the different shadow sets and their values within each z-space. These values were
+//// created by taking a few reference shadow sets created by Google's Designers and interpolating
+//// all of the values between them.
+//
+//$_umbra-elevation-map: (
+//  0: '0px 0px 0px 0px #{$_umbra-color}',
+//  1: '0px 2px 1px -1px #{$_umbra-color}',
+//  2: '0px 3px 1px -2px #{$_umbra-color}',
+//  3: '0px 3px 3px -2px #{$_umbra-color}',
+//  4: '0px 2px 4px -1px #{$_umbra-color}',
+//  5: '0px 3px 5px -1px #{$_umbra-color}',
+//  6: '0px 3px 5px -1px #{$_umbra-color}',
+//  7: '0px 4px 5px -2px #{$_umbra-color}',
+//  8: '0px 5px 5px -3px #{$_umbra-color}',
+//  9: '0px 5px 6px -3px #{$_umbra-color}',
+//  10: '0px 6px 6px -3px #{$_umbra-color}',
+//  11: '0px 6px 7px -4px #{$_umbra-color}',
+//  12: '0px 7px 8px -4px #{$_umbra-color}',
+//  13: '0px 7px 8px -4px #{$_umbra-color}',
+//  14: '0px 7px 9px -4px #{$_umbra-color}',
+//  15: '0px 8px 9px -5px #{$_umbra-color}',
+//  16: '0px 8px 10px -5px #{$_umbra-color}',
+//  17: '0px 8px 11px -5px #{$_umbra-color}',
+//  18: '0px 9px 11px -5px #{$_umbra-color}',
+//  19: '0px 9px 12px -6px #{$_umbra-color}',
+//  20: '0px 10px 13px -6px #{$_umbra-color}',
+//  21: '0px 10px 13px -6px #{$_umbra-color}',
+//  22: '0px 10px 14px -6px #{$_umbra-color}',
+//  23: '0px 11px 14px -7px #{$_umbra-color}',
+//  24: '0px 11px 15px -7px #{$_umbra-color}'
+//);
+//
+//$_penumbra-elevation-map: (
+//  0: '0px 0px 0px 0px #{$_penumbra-color}',
+//  1: '0px 1px 1px 0px #{$_penumbra-color}',
+//  2: '0px 2px 2px 0px #{$_penumbra-color}',
+//  3: '0px 3px 4px 0px #{$_penumbra-color}',
+//  4: '0px 4px 5px 0px #{$_penumbra-color}',
+//  5: '0px 5px 8px 0px #{$_penumbra-color}',
+//  6: '0px 6px 10px 0px #{$_penumbra-color}',
+//  7: '0px 7px 10px 1px #{$_penumbra-color}',
+//  8: '0px 8px 10px 1px #{$_penumbra-color}',
+//  9: '0px 9px 12px 1px #{$_penumbra-color}',
+//  10: '0px 10px 14px 1px #{$_penumbra-color}',
+//  11: '0px 11px 15px 1px #{$_penumbra-color}',
+//  12: '0px 12px 17px 2px #{$_penumbra-color}',
+//  13: '0px 13px 19px 2px #{$_penumbra-color}',
+//  14: '0px 14px 21px 2px #{$_penumbra-color}',
+//  15: '0px 15px 22px 2px #{$_penumbra-color}',
+//  16: '0px 16px 24px 2px #{$_penumbra-color}',
+//  17: '0px 17px 26px 2px #{$_penumbra-color}',
+//  18: '0px 18px 28px 2px #{$_penumbra-color}',
+//  19: '0px 19px 29px 2px #{$_penumbra-color}',
+//  20: '0px 20px 31px 3px #{$_penumbra-color}',
+//  21: '0px 21px 33px 3px #{$_penumbra-color}',
+//  22: '0px 22px 35px 3px #{$_penumbra-color}',
+//  23: '0px 23px 36px 3px #{$_penumbra-color}',
+//  24: '0px 24px 38px 3px #{$_penumbra-color}'
+//);
+//
+//$_ambient-elevation-map: (
+//  0: '0px 0px 0px 0px #{$_ambient-color}',
+//  1: '0px 1px 3px 0px #{$_ambient-color}',
+//  2: '0px 1px 5px 0px #{$_ambient-color}',
+//  3: '0px 1px 8px 0px #{$_ambient-color}',
+//  4: '0px 1px 10px 0px #{$_ambient-color}',
+//  5: '0px 1px 14px 0px #{$_ambient-color}',
+//  6: '0px 1px 18px 0px #{$_ambient-color}',
+//  7: '0px 2px 16px 1px #{$_ambient-color}',
+//  8: '0px 3px 14px 2px #{$_ambient-color}',
+//  9: '0px 3px 16px 2px #{$_ambient-color}',
+//  10: '0px 4px 18px 3px #{$_ambient-color}',
+//  11: '0px 4px 20px 3px #{$_ambient-color}',
+//  12: '0px 5px 22px 4px #{$_ambient-color}',
+//  13: '0px 5px 24px 4px #{$_ambient-color}',
+//  14: '0px 5px 26px 4px #{$_ambient-color}',
+//  15: '0px 6px 28px 5px #{$_ambient-color}',
+//  16: '0px 6px 30px 5px #{$_ambient-color}',
+//  17: '0px 6px 32px 5px #{$_ambient-color}',
+//  18: '0px 7px 34px 6px #{$_ambient-color}',
+//  19: '0px 7px 36px 6px #{$_ambient-color}',
+//  20: '0px 8px 38px 7px #{$_ambient-color}',
+//  21: '0px 8px 40px 7px #{$_ambient-color}',
+//  22: '0px 8px 42px 7px #{$_ambient-color}',
+//  23: '0px 9px 44px 8px #{$_ambient-color}',
+//  24: '0px 9px 46px 8px #{$_ambient-color}'
+//);
+//
+///**
+// * The css property used for elevation. In most cases this should not be changed. It is exposed
+// * as a variable for abstraction / easy use when needing to reference the property directly, for
+// * example in a will-change rule.
+// */
+//$md-elevation-property: box-shadow !default;
+//
+///** The default duration value for elevation transitions. */
+//$md-elevation-transition-duration: 280ms !default;
+//
+///** The default easing value for elevation transitions. */
+//$md-elevation-transition-timing-function: $md-fast-out-slow-in-timing-function;
+//
+///**
+// * Applies the correct css rules to an element to give it the elevation specified by $zValue.
+// * The $zValue must be between 0 and 24.
+// */
+//@mixin md-elevation($zValue) {
+//  @if type-of($zValue) != number or not unitless($zValue) {
+//    @error "$zValue must be a unitless number";
+//  }
+//  @if $zValue < 0 or $zValue > 24 {
+//    @error "$zValue must be between 0 and 24";
+//  }
+//
+//  #{$md-elevation-property}: #{map-get($_umbra-elevation-map, $zValue)},
+//                             #{map-get($_penumbra-elevation-map, $zValue)},
+//                             #{map-get($_ambient-elevation-map, $zValue)};
+//}
+//
+///**
+// * Returns a string that can be used as the value for a transition property for elevation.
+// * Calling this function directly is useful in situations where a component needs to transition
+// * more than one property.
+// *
+// * .foo {
+// *   transition: md-elevation-transition-property-value(), opacity 100ms ease;
+// *   will-change: $md-elevation-property, opacity;
+// * }
+// */
+//@function md-elevation-transition-property-value(
+//    $duration: $md-elevation-transition-duration,
+//    $easing: $md-elevation-transition-timing-function) {
+//  @return #{$md-elevation-property} #{$duration} #{$easing};
+//}
+//
+///**
+// * Applies the correct css rules needed to have an element transition between elevations.
+// * This mixin should be applied to elements whose elevation values will change depending on their
+// * context (e.g. when active or disabled).
+// */
+//// NOTE(traviskaufman): Both this mixin and the above function use default parameters so they can
+//// be used in the same way by clients.
+//@mixin md-elevation-transition(
+//    $duration: $md-elevation-transition-duration,
+//    $easing: $md-elevation-transition-timing-function) {
+//  transition: md-elevation-transition-property-value($duration, $easing);
+//  will-change: $md-elevation-property;
+//}
+///*cs-tag elevation end*/
+//
+//
+//// Provides external CSS classes for each elevation value. Each CSS class is formatted as
+//// `md-elevation-z$zValue` where `$zValue` corresponds to the z-space to which the element is
+//// elevated.
+//@for $zValue from 0 through 24 {
+//  .md-elevation-z#{$zValue} {
+//    @include md-elevation($zValue);
+//  }
+//}
+//
+///*cs-tag core end*/
+//
+//
+///*cs-tag list start*/
+//$md-list-side-padding: 16px;
+//$md-list-avatar-size: 40px;
+//$md-list-icon-size: 24px;
+//
+///*  Normal list variables */
+//$md-list-top-padding: 8px;
+//$md-list-font-size: 16px;
+//$md-list-secondary-font: 14px;
+//// height for single-line lists
+//$md-list-base-height: 48px;
+//// height for single-line lists with avatars
+//$md-list-avatar-height: 56px;
+//// spec requires two- and three-line lists be taller
+//$md-list-two-line-height: 72px;
+//$md-list-three-line-height: 88px;
+//
+///* Dense list variables */
+//$md-dense-top-padding: 4px;
+//$md-dense-font-size: 13px;
+//$md-dense-base-height: 40px;
+//$md-dense-avatar-height: 48px;
+//$md-dense-two-line-height: 60px;
+//$md-dense-three-line-height: 76px;
+//
+///*
+//This mixin provides all list-item styles, changing font size and height
+//based on whether the list is in dense mode.
+//*/
+//@mixin md-list-item-base($font-size, $base-height, $avatar-height,
+//  $two-line-height, $three-line-height) {
+//
+//  .md-list-item {
+//    display: flex;
+//    flex-direction: row;
+//    align-items: center;
+//    font-family: $md-font-family;
+//    box-sizing: border-box;
+//    font-size: $font-size;
+//    height: $base-height;
+//    padding: 0 $md-list-side-padding;
+//  }
+//
+//  &.md-list-avatar .md-list-item {
+//    height: $avatar-height;
+//  }
+//
+//  &.md-2-line .md-list-item {
+//    height: $two-line-height;
+//  }
+//
+//  &.md-3-line .md-list-item {
+//    height: $three-line-height;
+//  }
+//
+//  .md-list-text {
+//    display: flex;
+//    flex-direction: column;
+//    width: 100%;
+//    padding: 0 $md-list-side-padding;
+//    box-sizing: border-box;
+//    overflow: hidden;
+//
+//    &:first-child {
+//      padding: 0;
+//    }
+//
+//    &:empty {
+//      display: none;
+//    }
+//
+//    & > * {
+//      margin: 0;
+//      padding: 0;
+//      font-weight: normal;
+//      font-size: inherit;
+//    }
+//  }
+//
+//  [md-list-avatar] {
+//    width: $md-list-avatar-size;
+//    height: $md-list-avatar-size;
+//    border-radius: 50%;
+//  }
+//
+//  [md-list-icon] {
+//    width: $md-list-icon-size;
+//    height: $md-list-icon-size;
+//    border-radius: 50%;
+//    padding: 4px;
+//  }
+//}
+//
+///*
+//This mixin provides all md-line styles, changing secondary font size
+//based on whether the list is in dense mode.
+//*/
+//@mixin md-line-base($secondary-font-size) {
+//
+//  [md-line] {
+//    display: block;
+//    white-space: nowrap;
+//    overflow-x: hidden;
+//    text-overflow: ellipsis;
+//    box-sizing: border-box;
+//
+//    // all lines but the top line should have smaller text
+//    &:nth-child(n+2) {
+//      font-size: $secondary-font-size;
+//    }
+//  }
+//}
+//
+///*
+//This mixin provides all subheader styles, adjusting heights and padding
+//based on whether the list is in dense mode.
+//*/
+//@mixin md-subheader-base($top-padding, $secondary-size, $base-height) {
+//  display: block;
+//  box-sizing: border-box;
+//  height: $base-height;
+//  padding: $md-list-side-padding;
+//  margin: 0;
+//
+//  font-size: $secondary-size;
+//  font-weight: 500;
+//  color: md-color($md-foreground, secondary-text);
+//
+//  &:first-child {
+//    margin-top: -$top-padding;
+//  }
+//}
+//
+//md-list, md-nav-list  {
+//  padding-top: $md-list-top-padding;
+//  display: block;
+//
+//  [md-subheader] {
+//    @include md-subheader-base(
+//      $md-list-top-padding,
+//      $md-list-secondary-font,
+//      $md-list-base-height
+//    );
+//  }
+//
+//
+//  md-list-item, a[md-list-item] {
+//    @include md-list-item-base(
+//      $md-list-font-size,
+//      $md-list-base-height,
+//      $md-list-avatar-height,
+//      $md-list-two-line-height,
+//      $md-list-three-line-height
+//    );
+//
+//    @include md-line-base($md-list-secondary-font);
+//  }
+//}
+//
+//
+//md-list[dense], md-nav-list[dense] {
+//  padding-top: $md-dense-top-padding;
+//  display: block;
+//
+//  [md-subheader] {
+//    @include md-subheader-base(
+//      $md-dense-top-padding,
+//      $md-dense-font-size,
+//      $md-dense-base-height
+//    );
+//  }
+//
+//  md-list-item, a[md-list-item] {
+//    @include md-list-item-base(
+//      $md-dense-font-size,
+//      $md-dense-base-height,
+//      $md-dense-avatar-height,
+//      $md-dense-two-line-height,
+//      $md-dense-three-line-height
+//    );
+//
+//    @include md-line-base($md-dense-font-size);
+//  }
+//
+//}
+//
+//md-divider {
+//  display: block;
+//  border-top: 1px solid md-color($md-foreground, divider);
+//  margin: 0;
+//}
+//
+//md-nav-list {
+//  a {
+//    text-decoration: none;
+//    color: inherit;
+//  }
+//
+//  .md-list-item {
+//    cursor: pointer;
+//
+//    &:hover, &.md-list-item-focus {
+//      outline: none;
+//      background: md-color($md-background, 'hover');
+//    }
+//  }
+//}
+//
+///*cs-tag list end*/
+//
+
+/*cs-tag file end*/
+
+
+
+

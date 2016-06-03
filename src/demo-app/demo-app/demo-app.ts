@@ -27,6 +27,9 @@ import {GridListDemo} from '../grid-list/grid-list-demo';
 import {TabsDemo} from '../tabs/tab-group-demo';
 import {SlideToggleDemo} from '../slide-toggle/slide-toggle-demo';
 
+import {UidGenerator} from '../scheduler-app/uid-generator';
+import {DragDropModelTemplate} from '../scheduler-app/drag-drop-model-template';
+import { RoboRenG2AppComponent } from '../scheduler-app/robo-ren-g2.component';
 @Component({
   selector: 'home',
   template: `
@@ -50,6 +53,7 @@ export class Home {}
     MD_SIDENAV_DIRECTIVES,
     MD_LIST_DIRECTIVES,
     MdToolbar,
+RoboRenG2AppComponent
   ],
   pipes: []
 })
@@ -72,6 +76,7 @@ export class Home {}
   new Route({path: '/live-announcer', component: LiveAnnouncerDemo}),
   new Route({path: '/gestures', component: GesturesDemo}),
   new Route({path: '/grid-list', component: GridListDemo}),
-  new Route({path: '/tabs', component: TabsDemo})
+  new Route({path: '/tabs', component: TabsDemo}),
+  new Route({path: '/robo', component: RoboRenG2AppComponent})
 ])
 export class DemoApp { }

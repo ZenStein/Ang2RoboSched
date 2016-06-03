@@ -1,0 +1,48 @@
+
+<style>
+ul{
+    list-style: none
+}
+li{
+    height: 60px;
+    width:100%;
+}
+
+</style>
+<h1>
+ here  {{title}}
+</h1>
+<list-controls (refreshallassigments)="refreshAllAssignments($event)" (addlist)="addList($event)"></list-controls>
+<div>
+<div hidden>{{listsData | json}}</div>
+<div hidden>item isvalid: {{isValidDrop}}</div>
+<div hidden>list isvalid: {{canDropToList}}</div>
+<p>material list below</p>
+
+
+
+
+  <md-card>
+    <md-card-title>Fixed-height grid list</md-card-title>
+    <md-card-content>
+      <md-grid-list [cols]="fixedCols" [rowHeight]="70">
+        <md-grid-tile *ngFor="let lists of listsData; let i = index" [colspan]="1" [rowspan]="listsData[i].listItems.length + 1"
+                      [style.background]="'#9FA8DA'">
+          <md-grid-tile-header  id="{{i}}_list" csDragger csSelected ListDropper (listDropperIsDragged)="setCanDropToList($event)"  >
+            <md-icon md-grid-avatar>info_outline</md-icon>
+            somename
+          </md-grid-tile-header>
+          <div style="font-size:26px;position:absolute;bottom:0px;left:0px;height:80%;width:100%;">
+            <ul>
+                <cs-item (dropSpotValid)="setIsValidDrop($event)" (selectionToggle)="selectionMade($event)" [selected]="listItem.selected"  [viewText]="listItem.viewText"[uid]="lists.listUid" [index]="j" *ngFor="let listItem of lists.listItems; let j = index" style="border: 1px solid black"></cs-item>
+            </ul>
+          </div>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-card-content>
+    <md-card-actions>
+      <p>Change list cols: <input type="number" [(ngModel)]="fixedCols"></p>
+      <p>Change row height: <input type="number" [(ngModel)]="fixedRowHeight"></p>
+      <button md-button (click)="addTileCols()" color="primary">ADD COLSPAN (THREE)</button>
+    </md-card-actions>
+  </md-card>

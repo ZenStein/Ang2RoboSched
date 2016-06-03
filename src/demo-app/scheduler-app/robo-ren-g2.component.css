@@ -1,0 +1,61 @@
+.list-container{
+    background-color: grey;
+    position: relative;
+    height: 300px;
+    width: 200px;
+    float: left;
+    display: inline;
+   margin-left: 50px; 
+}
+
+.is-selected{
+    background-color:lightblue;
+        cursor: move;
+}
+.original{
+    cursor: move;
+    background-color: gray;
+}
+.dragged-over{
+    background-color: white;
+        cursor: move;
+}
+.drag-out{
+background-color: purple;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+      height: 300px;
+      width:10%;
+                  
+}
+ .blackback{
+background-color: purple;
+ }
+
+
+.demo-grid-list {
+  width: 1100px;
+
+  md-card {
+    margin: 16px 0;
+  }
+
+  p {
+    margin: 16px;
+  }
+
+  .demo-basic-list md-grid-tile {
+    background: rgba(0,0,0,0.32);
+  }
+
+  img {
+    width: 350px;
+  }
+}

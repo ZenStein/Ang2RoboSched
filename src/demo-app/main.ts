@@ -1,4 +1,7 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Observable'
 import {HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router';
@@ -11,14 +14,17 @@ import {createOverlayContainer} from '@angular2-material/core/overlay/overlay-co
 import {MdGestureConfig} from '@angular2-material/core/gestures/MdGestureConfig';
 import {MdIconRegistry} from '@angular2-material/icon/icon-registry';
 
-import {DemoApp} from './demo-app/demo-app';
 
+import {DemoApp} from './demo-app/demo-app';
+console.log(bootstrap)
 bootstrap(DemoApp, [
+//    [DragDropModelTemplate],
+//    [UidGenerator],
   ROUTER_PROVIDERS,
   MdLiveAnnouncer,
   provide(OVERLAY_CONTAINER_TOKEN, {useValue: createOverlayContainer()}),
   HTTP_PROVIDERS,
   MdIconRegistry,
-  Renderer,
-  provide(HAMMER_GESTURE_CONFIG, {useClass: MdGestureConfig})
+  Renderer//,
+//  /*provide(*/HAMMER_GESTURE_CONFIG/*, {useClass: MdGestureConfig})*/
 ]);

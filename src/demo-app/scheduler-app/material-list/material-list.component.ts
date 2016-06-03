@@ -4,15 +4,31 @@ import {MdButton} from '@angular2-material/button/button';
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card/card';
 import {MdIcon, MdIconRegistry} from '@angular2-material/icon/icon';
 
+
+
+
+
+
+
+
 @Component({
-  moduleId: module.id,
-  selector: 'grid-list-demo',
-  templateUrl: 'grid-list-demo.html',
-  styleUrls: ['grid-list-demo.css'],
+      moduleId: module.id,
+        selector: 'cs-material-list',
+          templateUrl: 'material-list.component.html',
+            styleUrls: ['material-list.component.css'],
   directives: [MD_GRID_LIST_DIRECTIVES, MdButton, MD_CARD_DIRECTIVES, MdIcon],
   providers: [MdIconRegistry]
 })
-export class GridListDemo {
+
+//@Component({
+//  moduleId: module.id,
+//  selector: 'list-demo',
+//  templateUrl: 'list-demo.html',
+//  styleUrls: ['list-demo.css'],
+//  directives: [MD_LIST_DIRECTIVES, MdButton, MdIcon]
+//})
+export class CsMaterialListComponent{
+
   tiles: any[] = [
     {text: 'Arr_1', cols: 1, rows: 4, color: 'lightblue'},
     {text: 'Dep_2', cols: 1, rows: 2, color: 'lightgreen'},
@@ -52,3 +68,11 @@ overDrag(x: Event){
 }
   addTileCols() { this.tiles[2].cols++; }
 }
+
+
+
+
+
+
+
+
